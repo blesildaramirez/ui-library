@@ -84,6 +84,9 @@
 					MultilingualProgress
 				</router-link>
 			</li>
+			<li>
+				<router-link to="/component/Navigation">Navigation</router-link>
+			</li>
 			<li><router-link to="/component/Orderer">Orderer</router-link></li>
 			<li>
 				<router-link to="/component/Pagination">Pagination</router-link>
