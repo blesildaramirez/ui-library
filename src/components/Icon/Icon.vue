@@ -84,6 +84,7 @@ import Search from './icons/Search.vue';
 import Settings from './icons/Settings.vue';
 import Sort from './icons/Sort.vue';
 import Statistics from './icons/Statistics.vue';
+import Tools from './icons/Tools.vue';
 import Underline from './icons/Underline.vue';
 import Url from './icons/Url.vue';
 import UsefulTips from './icons/UsefulTips.vue';
@@ -138,6 +139,7 @@ const svgIcons = {
 	Settings,
 	Sort,
 	Statistics,
+	Tools,
 	Underline,
 	Url,
 	UsefulTips,
