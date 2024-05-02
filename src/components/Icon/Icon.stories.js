@@ -94,6 +94,7 @@ export const iconGallery = {
 			'MergeUser',
 			'MySubmissions',
 			'NavDoi',
+			'NavAdmin',
 			'Notifications',
 			'OpenReview',
 			'Orcid',

@@ -72,6 +72,7 @@ import LoginAs from './icons/LoginAs.vue';
 import MergeUser from './icons/MergeUser.vue';
 import MySubmissions from './icons/MySubmissions.vue';
 import NavDoi from './icons/NavDoi.vue';
+import NavAdmin from './icons/NavAdmin.vue';
 import Notifications from './icons/Notifications.vue';
 import OpenReview from './icons/OpenReview.vue';
 import Orcid from './icons/Orcid.vue';
@@ -127,6 +128,7 @@ const svgIcons = {
 	MergeUser,
 	MySubmissions,
 	NavDoi,
+	NavAdmin,
 	Notifications,
 	OpenReview,
 	Orcid,
