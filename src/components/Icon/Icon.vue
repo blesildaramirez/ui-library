@@ -43,6 +43,7 @@ import BackButton from './icons/BackButton.vue';
 import Bold from './icons/Bold.vue';
 import Bullets from './icons/Bullets.vue';
 import Cancel from './icons/Cancel.vue';
+import Catalog from './icons/Catalog.vue';
 import Complete from './icons/Complete.vue';
 import Dashboard from './icons/Dashboard.vue';
 import DecreaseTextSize from './icons/DecreaseTextSize.vue';
@@ -99,6 +100,7 @@ const svgIcons = {
 	Bold,
 	Bullets,
 	Cancel,
+	Catalog,
 	Complete,
 	Dashboard,
 	DecreaseTextSize,
