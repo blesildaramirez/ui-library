@@ -100,6 +100,7 @@ export const iconGallery = {
 			'OpenReview',
 			'Orcid',
 			'Overdue',
+			'Payment',
 			'ReadRecommendation',
 			'ReviewAssignments',
 			'ReviewSent',
