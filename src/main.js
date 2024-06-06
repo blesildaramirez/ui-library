@@ -133,7 +133,7 @@ vueApp.use(FloatingVue, {
 	themes: {
 		'pkp-tooltip': {
 			$extend: 'tooltip',
-			triggers: ['hover'],
+			triggers: ['hover', 'focus'],
 			delay: {
 				show: 0,
 				hide: 0,
