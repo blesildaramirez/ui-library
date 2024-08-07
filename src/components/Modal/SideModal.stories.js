@@ -2,6 +2,7 @@ import {within, userEvent} from '@storybook/test';
 import {ref, inject} from 'vue';
 import SideModal from './SideModal.vue';
 import {useModal} from '@/composables/useModal.js';
+import Navigation2 from '../Navigation2/Navigation2.vue';
 import SideModalBody from './SideModalBody.vue';
 import SideModalLayoutBasic from './SideModalLayoutBasic.vue';
 import SideModalLayout2Columns from './SideModalLayout2Columns.vue';
@@ -403,5 +404,282 @@ export const NestedModal = {
 
 		await user.click(canvas.getByText('Nested modal'));
 		await user.click(await canvas.findByText('Open Second Modal'));
+	},
+};
+
+const SideModalWithNavigation = {
+	components: {SideModal, SideModalBody, SideModalLayout2Columns, Navigation2},
+	setup() {
+		const metadata = [
+			{name: 'Type', value: 'Article'},
+			{
+				name: 'Abstract',
+				value:
+					'Nam id quam mollis, porta dui vel, accumsan sem. Sed commodo felis tristique justo pulvinar lacinia. Etiam pulvinar tortor et dui malesuada fringilla. Nullam leo risus, luctus ut sem ut, dignissim luctus quam. Nulla vel varius urna. Cras eget odio tellus. Proin eu nisi vehicula nulla laculis lobortis.',
+			},
+		];
+		const generalInformation = [
+			{name: 'Editors request', value: 'dd-mm-yyyy'},
+			{
+				name: 'Response due date',
+				value: 'dd-mm-yyy',
+			},
+		];
+		const links = {
+			admin: {
+				name: 'Dashboards',
+				url: '#',
+				isCurrent: true,
+				icon: 'Dashboard',
+			},
+			review: {
+				name: 'My Review Assignments',
+				url: '#',
+				isCurrent: false,
+				icon: 'ReviewAssignments',
+			},
+			submissions: {
+				name: 'My Submissions as Author',
+				url: '#',
+				isCurrent: false,
+				icon: 'MySubmissions',
+			},
+			notifications: {
+				name: 'Notifications (10)',
+				url: '#',
+				isCurrent: false,
+				icon: 'Notifications',
+			},
+			issues: {
+				name: 'Issues',
+				url: '#',
+				isCurrent: false,
+				icon: 'Issues',
+			},
+			announcements: {
+				name: 'Announcements',
+				url: '#',
+				isCurrent: false,
+				icon: 'Announcements',
+			},
+			dois: {
+				name: 'DOIs',
+				url: '#',
+				isCurrent: false,
+				icon: 'NavDoi',
+			},
+			institutes: {
+				name: 'Institutes',
+				url: '#',
+				isCurrent: false,
+				icon: 'Institutes',
+			},
+			settings: {
+				name: 'Settings',
+				icon: 'Settings',
+				url: '#',
+				submenu: {
+					context: {
+						name: 'Journal',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+					website: {
+						name: 'Website',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+						submenu: {
+							item1: {
+								name: 'Item 1',
+								url: '#',
+								isCurrent: false,
+								icon: '',
+							},
+							item2: {
+								name: 'Item 2',
+								url: '#',
+								isCurrent: false,
+								icon: '',
+								submenu: {
+									item1: {
+										name: 'Item 2.1',
+										url: '#',
+										isCurrent: false,
+										icon: '',
+									},
+									item2: {
+										name: 'Item 2.2',
+										url: '#',
+										isCurrent: false,
+										icon: '',
+									},
+									item3: {
+										name: 'Item 2.3',
+										url: '#',
+										isCurrent: false,
+										icon: '',
+									},
+								},
+							},
+							item3: {
+								name: 'Item 2',
+								url: '#',
+								isCurrent: false,
+								icon: '',
+							},
+						},
+					},
+					workflow: {
+						name: 'Workflow',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+					distribution: {
+						name: 'Distribution',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+					access: {
+						name: 'Users & Roles',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+				},
+			},
+			statistics: {
+				name: 'Statistics',
+				icon: 'Statistics',
+				url: '#',
+				submenu: {
+					publications: {
+						name: 'Articles',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+					issues: {
+						name: 'Issues',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+					context: {
+						name: 'Journal',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+					editorial: {
+						name: 'Editorial Activity',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+					users: {
+						name: 'Users',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+					reports: {
+						name: 'Reports',
+						url: '#',
+						isCurrent: false,
+						icon: '',
+					},
+				},
+			},
+			tools: {
+				name: 'Tools',
+				url: '#',
+				isCurrent: false,
+				icon: 'Tools',
+			},
+			help: {
+				name: 'Help',
+				url: '#',
+				isCurrent: false,
+				icon: 'Help',
+			},
+		};
+		return {metadata, generalInformation, links};
+	},
+	template: `
+		<SideModalBody>
+			<template #pre-title>970</template>
+			<template #title><span class="underline">Round 1 Review submitted by you for</span></template>
+			<template #description>
+				Is blended e-learning as measured by an achievement test and self-assessment better than traditional classroom learning for vocational high school students?
+			</template>
+
+				<SideModalLayout2Columns>
+					<template #left>
+						<div class="flex">
+							<Navigation2 :links="links"></Navigation2>
+							<p class="px-5">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+								eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+								minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+								aliquip ex ea commodo consequat.
+							</p>
+						</div>
+					</template>
+					<template #right1>
+						<div class="text-xl-bold">Article Metadata</div>
+						<div v-for="item in metadata" class="mt-4">
+							<div class="text-lg-bold">{{ item.name }}:</div>
+							<div class="text-base-normal mt-1">{{item.value}}</div>
+						</div>
+
+					</template>
+					<template #right2>
+						<div class="text-xl-bold">General Inforation</div>
+						<div v-for="item in generalInformation" class="mt-4">
+							<div class="text-lg-bold">{{ item.name }}:</div>
+							<div class="text-base-normal mt-1">{{item.value}}</div>
+						</div>
+					</template>
+
+
+				</SideModalLayout2Columns>
+		</SideModalBody>
+	`,
+};
+
+export const WithNavigation = {
+	render: (args) => ({
+		components: {SideModalWithNavigation},
+		setup() {
+			const {openSideModal} = useModal();
+
+			function openModal() {
+				openSideModal(SideModalWithNavigation);
+			}
+
+			return {openModal};
+		},
+		template: `
+			<PkpButton  @click="openModal">
+				Open Modal
+			</PkpButton>
+		`,
+	}),
+	decorators: [
+		() => ({
+			template: '<div style="height: 700px"><story/></div>',
+		}),
+	],
+	args: {},
+	play: async ({canvasElement}) => {
+		// Assigns canvas to the component root element
+		const canvas = within(canvasElement);
+		const user = userEvent.setup();
+
+		await user.click(canvas.getByText('Open Modal'));
 	},
 };
