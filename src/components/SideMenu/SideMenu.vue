@@ -3,17 +3,12 @@
 		:expanded-keys="expandedKeys"
 		:model="items"
 		:pt="navigationStyling"
-		class="w-72 overflow-y-auto border-e border-s border-light"
 		:class="backgroundVariant"
+		class="w-72 overflow-y-auto border-e border-s border-light"
 		@update:expanded-keys="(...args) => emit('update:expandedKeys', ...args)"
 	>
-		<template #item="{item, active, hasSubmenu}">
-			<a
-				:class="getButtonStyles(item)"
-				:href="item.link"
-				tabindex="-1"
-				@click="handleClick(item)"
-			>
+		<template #item="{item, active, hasSubmenu, props}">
+			<a v-bind="props.action" @click="handleClick(item)">
 				<Badge
 					v-if="item.badge?.slot"
 					:color-variant="
@@ -127,6 +122,22 @@ function mapItems(_items, level = 1) {
 const items = computed(() => mapItems(props.items));
 
 const navigationStyling = {
+	header: (obj) => {
+		console.log('header obj', obj);
+		// return {
+		// 	class: getButtonStyles(obj.context),
+		// 	href: obj.context?.item?.link,
+		// 	tabindex: '-1',
+		// };
+	},
+	headerLink: (obj) => {
+		console.log('headerLink obj', obj);
+		// return {
+		// 	class: getButtonStyles(obj.context),
+		// 	href: obj.context?.item?.link,
+		// 	tabindex: '-1',
+		// };
+	},
 	headerContent: () => {
 		return {
 			class: [
@@ -134,6 +145,16 @@ const navigationStyling = {
 				'transition duration-200 ease-in-out',
 				'transition-shadow duration-200',
 			],
+		};
+	},
+	rootlist: {
+		class: ['focus-visible:outline-none'],
+	},
+	itemLink: ({context}) => {
+		return {
+			class: getButtonStyles(context),
+			href: context.item?.link,
+			tabindex: '-1',
 		};
 	},
 	itemContent: {
@@ -166,7 +187,8 @@ function isActive(item) {
 	return currentActiveKey && currentActiveKey === item?.key;
 }
 
-function getButtonStyles(item) {
+function getButtonStyles(context) {
+	const item = context.item;
 	const isActiveItem = isActive(item);
 
 	const style = {
@@ -191,6 +213,7 @@ function getButtonStyles(item) {
 		'border-s-8': item.colorStripe,
 		// Items with children
 		'!text-lg-bold': item.items && item.level === 1,
+		'border !border-dark': context.focused,
 	};
 
 	// set the additional class if the button should include a color stripe
