@@ -300,5 +300,6 @@ export function useForm(_form, {customSubmit} = {}) {
 		setLocalesForSubmission,
 		setAction,
 		structuredErrors,
+		getField,
 	};
 }
