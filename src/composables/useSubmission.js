@@ -54,31 +54,6 @@ export const StageLabels = {
 };
 
 /**
- * Translation keys for reviewer recommendations
- * @type {Object}
- */
-export const RecommendationTranslations = {
-	[pkp.const.SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT]: tk(
-		'reviewer.article.decision.accept',
-	),
-	[pkp.const.SUBMISSION_REVIEWER_RECOMMENDATION_PENDING_REVISIONS]: tk(
-		'reviewer.article.decision.pendingRevisions',
-	),
-	[pkp.const.SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_HERE]: tk(
-		'reviewer.article.decision.resubmitHere',
-	),
-	[pkp.const.SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_ELSEWHERE]: tk(
-		'reviewer.article.decision.resubmitElsewhere',
-	),
-	[pkp.const.SUBMISSION_REVIEWER_RECOMMENDATION_DECLINE]: tk(
-		'reviewer.article.decision.decline',
-	),
-	[pkp.const.SUBMISSION_REVIEWER_RECOMMENDATION_SEE_COMMENTS]: tk(
-		'reviewer.article.decision.seeComments',
-	),
-};
-
-/**
  * Review assignment statuses that indicate the review is in progress
  * @type {Array<number>}
  */
@@ -263,7 +238,14 @@ export function useSubmission() {
 			case pkp.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
 				return ExtendedStages.EXTERNAL_REVIEW;
 			case pkp.const.WORKFLOW_STAGE_ID_EDITING:
-				return ExtendedStages.EDITING;
+				switch (submission.status) {
+					case pkp.const.STATUS_SCHEDULED:
+						return ExtendedStages.PRODUCTION_SCHEDULED;
+					case pkp.const.STATUS_PUBLISHED:
+						return ExtendedStages.PRODUCTION_PUBLISHED;
+					default:
+						return ExtendedStages.EDITING;
+				}
 			case pkp.const.WORKFLOW_STAGE_ID_PRODUCTION:
 				switch (submission.status) {
 					case pkp.const.STATUS_QUEUED:

@@ -14,7 +14,7 @@ export const useReviewerManagerStore = defineComponentStore(
 			getReviewAssignmentsForRound,
 		} = useSubmission();
 
-		const extender = useExtender();
+		const extender = useExtender({context: {props}});
 
 		const reviewAssignments = computed(() => {
 			const reviewAssignmentsForSelectedRound = getReviewAssignmentsForRound(
@@ -36,7 +36,9 @@ export const useReviewerManagerStore = defineComponentStore(
 		/**
 		 * Config
 		 */
-		const reviewerManagerConfig = extender.addFns(useReviewerManagerConfig());
+		const reviewerManagerConfig = extender.addFns(
+			useReviewerManagerConfig({recommendations: props.recommendations}),
+		);
 
 		const columns = computed(() =>
 			reviewerManagerConfig.getColumns({
@@ -76,7 +78,7 @@ export const useReviewerManagerStore = defineComponentStore(
 		function getActionArgs(additionalArgs = {}) {
 			return {
 				submission: props.submission,
-				submissionStageId: props.submission.stageId,
+				submissionStageId: props.submissionStageId,
 				reviewRoundId: props.reviewRoundId,
 				componentForms: props.componentForms,
 				...additionalArgs,
