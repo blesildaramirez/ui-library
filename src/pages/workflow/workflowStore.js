@@ -32,7 +32,7 @@ export const useWorkflowStore = defineComponentStore(
 		const versionForm = props.pageInitConfig.componentForms.versionForm;
 		const contextMinReviewsPerSubmission =
 			props.pageInitConfig.contextMinReviewsPerSubmission;
-		const extender = useExtender({context: {props}});
+		const extender = useExtender();
 		/**
 		 * Action to close the workflow from inside
 		 * */
@@ -284,6 +284,7 @@ export const useWorkflowStore = defineComponentStore(
 
 			Components,
 			extender,
+			props,
 		};
 		return store;
 	},
