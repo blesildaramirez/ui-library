@@ -134,8 +134,13 @@ export default {
 	display: flex;
 	align-items: center;
 	overflow: hidden;
+	min-width: 0;
 	padding: 0 0.5rem;
 	margin: -0.5rem;
+}
+
+.selectSubmissionFileListItem__file {
+	min-width: 0;
 }
 
 .selectSubmissionFileListItem__selector {

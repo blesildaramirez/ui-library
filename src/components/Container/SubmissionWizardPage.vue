@@ -856,6 +856,7 @@ export default {
 
 .submissionWizard__reviewPanel__fileLink {
 	display: block;
+	min-width: 0;
 	margin-left: -0.25rem;
 	padding: 0.25rem;
 	border: 1px solid transparent;

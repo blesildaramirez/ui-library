@@ -62,6 +62,10 @@ export default {
 
 .fileUploadProgress__name {
 	font-size: @font-sml;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .fileUploadProgress__row {

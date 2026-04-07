@@ -24,6 +24,7 @@
 					<div v-else :key="i" class="fileAttacherUploader__uploadedFile">
 						<file
 							:id="'FileAttacherUpload__UploadedFile__' + i"
+							class="fileAttacherUploader__uploadedFile__file"
 							:name="file.form ? file.form.name : file.name"
 							:documentType="file.documentType || 'default'"
 						/>
@@ -194,6 +195,10 @@ export default {
 .fileAttacherUploader__uploadedFile {
 	display: flex;
 	padding: 0.5rem 0;
+}
+
+.fileAttacherUploader__uploadedFile__file {
+	min-width: 0;
 }
 
 .fileAttacherUploader__uploadedFile__remove {
