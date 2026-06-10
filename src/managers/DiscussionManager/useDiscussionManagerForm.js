@@ -89,7 +89,17 @@ export function useDiscussionManagerForm(
 			}
 
 			const participantRoles = participant.roles
-				?.map((role) => role.name)
+				?.map((role) => {
+					// For reviewers, show the review method per round below the role name.
+					// "Reviewer<br>Round 1 - Anonymous Reviewer/Disclosed Author, Round 2 - Open".
+					if (role.reviewMethods?.length) {
+						const reviewRounds = role.reviewMethods
+							.map((rm) => `${rm.roundLabel} - ${rm.methodLabel}`)
+							.join(t('common.commaListSeparator'));
+						return `${role.name}<br><span class="text-base-normal text-secondary">${reviewRounds}</span>`;
+					}
+					return role.name;
+				})
 				.join(t('common.commaListSeparator'));
 
 			return {
