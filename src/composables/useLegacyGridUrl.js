@@ -84,7 +84,7 @@ export function useLegacyGridUrl({
 			},
 			{
 				onClose: async (closeData) => {
-					finishedCallback(closeData);
+					await finishedCallback(closeData);
 				},
 			},
 		);
