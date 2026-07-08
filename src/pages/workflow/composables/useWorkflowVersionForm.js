@@ -9,6 +9,7 @@ import {useApp} from '@/composables/useApp';
 import {useQueryParams} from '@/composables/useQueryParams';
 import {useWorkflowPublicationFormIssue} from '@/pages/workflow/composables/useWorkflowPublicationFormIssue';
 import {useInsertSummaryOfChangesContent} from '@/composables/useInsertSummaryOfChangesContent';
+import {TOOLBAR_MINIMAL} from '@/utils/richTextToolbars';
 
 const VERSION_MODE = {
 	CREATE: 'createNewVersion', // the "Create New Version" action in the publication workflow menu
@@ -369,6 +370,8 @@ export function useWorkflowVersionForm(
 				label: t('submission.form.summaryOfChanges'),
 				description: t('publication.summaryOfChanges.description'),
 				isMultilingual: true,
+				toolbar: TOOLBAR_MINIMAL,
+				plugins: ['link', 'lists'],
 				value: store.selectedPublication?.summaryOfChanges || {},
 			});
 

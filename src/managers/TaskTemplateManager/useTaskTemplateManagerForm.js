@@ -5,6 +5,7 @@ import {useFetch} from '@/composables/useFetch';
 import {useFetchPaginated} from '@/composables/useFetchPaginated';
 import {useFormChanged} from '@/composables/useFormChanged';
 import {useLocalize} from '@/composables/useLocalize';
+import {TOOLBAR_MINIMAL} from '@/utils/richTextToolbars';
 
 export function useTaskTemplateManagerForm(props = {}) {
 	const {taskTemplate = null, stage = null} = props;
@@ -260,8 +261,8 @@ export function useTaskTemplateManagerForm(props = {}) {
 
 	addFieldPreparedContent('description', {
 		groupId: 'discussion',
-		toolbar: 'bold italic underline bullist | pkpInsert',
-		plugins: ['lists'],
+		toolbar: `${TOOLBAR_MINIMAL} | pkpInsert`,
+		plugins: ['link', 'lists'],
 		size: 'large',
 		value: taskTemplate?.description || '',
 		insertModalLabel: t('common.insertContent'),

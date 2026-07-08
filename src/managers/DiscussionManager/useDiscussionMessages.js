@@ -6,13 +6,14 @@ import {useCurrentUser, EditorialRoles} from '@/composables/useCurrentUser';
 import {createDropzoneOptions} from '@/components/FileUploader/dropzoneDefaults';
 
 import FileAttacherModal from '@/components/Composer/FileAttacherModal.vue';
+import {TOOLBAR_MINIMAL} from '@/utils/richTextToolbars';
 
 export function useDiscussionMessages(submission, headnoteFiles = []) {
 	// Only the headnote's files can be populated to selectedFiles
 	const selectedFiles = ref(headnoteFiles);
 	const messageFieldOptions = {
-		toolbar: 'bold italic underline bullist | pkpAttachFiles',
-		plugins: ['lists'],
+		toolbar: `${TOOLBAR_MINIMAL} | pkpAttachFiles`,
+		plugins: ['link', 'lists'],
 		size: 'large',
 		init: initDiscussionText(),
 	};
